@@ -1,4 +1,4 @@
-MyDHT22	KEYWORD1
-read	KEYWORD2
-getTemperature	KEYWORD2
-getHumidity	KEYWORD2
+MyDHT22    Class
+read        Method
+getTemperature  Method
+getHumidity     Method
