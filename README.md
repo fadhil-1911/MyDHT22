@@ -2,25 +2,25 @@
 
 Lightweight Arduino library for reading temperature and humidity from DHT22 sensor.
 
-## Ciri-ciri Utama
-- Bacaan suhu dan kelembapan menggunakan protokol digital
-- Ringan dan bebas dari kebergantungan perpustakaan luar
+## Key Features
+- Temperature and humidity reading using digital protocols
+- Lightweight and free from external library dependencies
 
-## Keperluan Sistem
+## System Requirements
 - Arduino IDE
-- Papan seperti Arduino Nano, Uno, dll
-- Sensor DHT22
+- Boards like Arduino Nano, Uno, etc
+- DHT22 sensor
 
-## Cara Pemasangan
-1. Muat turun fail ZIP
-2. Ekstrak ke dalam `Documents/Arduino/libraries/MyDHT22`
-3. Buka Arduino IDE dan semak contoh
+## Installation Instructions
+1. Download the ZIP file
+2. Extract it into `Documents/Arduino/libraries/MyDHT22`
+3. Open Arduino IDE and check the examples
 
-## Nota Penting
-- Pastikan sensor disambung dengan betul (VCC, GND, dan pin data)
-- Boleh digunakan dengan mana-mana pin digital
+## Important Notes
+- Make sure the sensor is connected correctly (VCC, GND, and data pins)
+- Can be used with any digital pin
 
-## Contoh Penggunaan
+## Usage Examples
 
 ```cpp
 #include <MyDHT22.h>
@@ -28,14 +28,14 @@ Lightweight Arduino library for reading temperature and humidity from DHT22 sens
 MyDHT22 dht(2); // Pin D2
 
 void setup() {
-  Serial.begin(9600);
+Serial.begin(9600);
 }
 
 void loop() {
-  if (dht.read()) {
-    Serial.print("Temp: ");
-    Serial.print(dht.getTemperature());
-    Serial.print(" C, Humidity: ");
+if (dht.read()) {
+Serial.print("Temp: ");
+Serial.print(dht.getTemperature());
+Serial.print(" C, Humidity: ");
     Serial.println(dht.getHumidity());
   }
   delay(2000);
