@@ -14,7 +14,6 @@ class MyDHT22 {
     uint8_t _pin;
     float _temperature;
     float _humidity;
-    bool readSensor();
 };
 
 #endif
