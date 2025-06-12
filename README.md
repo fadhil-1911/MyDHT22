@@ -40,4 +40,74 @@ if (dht.read()) {
   }
   delay(2000);
 }
-```
+```cpp
+
+⸻
+
+📘 API Documentation – MyDHT22 Library
+
+Below is a concise explanation of the API (Application Programming Interface) provided by the MyDHT22 library:
+
+⸻
+
+🔧 Core Functions (MyDHT22.h)
+
+⸻
+
+📌 1. MyDHT22(uint8_t pin)
+	•	Purpose: Constructor that sets the digital pin connected to the DHT22 sensor.
+	•	Example:
+```cpp
+MyDHT22 dht(2);
+```cpp
+
+
+⸻
+
+📌 2. bool read()
+	•	Purpose: Reads temperature and humidity data from the sensor.
+	•	Returns: true if successful, false if failed (e.g., timing issues).
+	•	Note: Must be called before accessing temperature or humidity values.
+	•	Example:
+```cpp
+if (dht.read()) {
+  // Reading was successful
+}
+```cpp
+
+
+⸻
+
+📌 3. float getTemperature()
+	•	Purpose: Returns the temperature value in degrees Celsius after a successful read().
+	•	Example:
+```cpp
+Serial.println(dht.getTemperature());
+```cpp
+
+
+⸻
+
+📌 4. float getHumidity()
+	•	Purpose: Returns the relative humidity (%) after a successful read().
+	•	Example:
+```cpp
+Serial.println(dht.getHumidity());
+```cpp
+
+
+⸻
+
+📌 5. bool isValid()
+	•	Purpose: Checks if the most recent reading is valid.
+	•	Example:
+```cpp
+if (dht.isValid()) {
+  // The data is valid and safe to use
+}
+```cpp
+
+
+⸻
+
+  
