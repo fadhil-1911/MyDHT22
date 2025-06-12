@@ -44,6 +44,7 @@ if (dht.read()) {
 
 ⸻
 
+## Important Notes
 ## API Documentation – MyDHT22 Library
 
 Below is a concise explanation of the API (Application Programming Interface) provided by the MyDHT22 library:
