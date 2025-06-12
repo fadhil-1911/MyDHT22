@@ -40,7 +40,7 @@ if (dht.read()) {
   }
   delay(2000);
 }
-
+```cpp
 
 ⸻
 
