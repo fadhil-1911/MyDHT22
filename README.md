@@ -1,113 +1,137 @@
+
 # MyDHT22 Library
 
-Lightweight Arduino library for reading temperature and humidity from DHT22 sensor.
+**Lightweight Arduino library for reading temperature and humidity from DHT22 sensor.**
 
-## Key Features
-- Temperature and humidity reading using digital protocols
-- Lightweight and free from external library dependencies
+---
 
-## System Requirements
+## 🔑 Key Features
+- Reads temperature (°C) and humidity (% RH) via digital signal
+- Lightweight and fast – no external dependencies
+- Non-blocking, optimized for microcontrollers
+
+---
+
+## 📋 System Requirements
 - Arduino IDE
-- Boards like Arduino Nano, Uno, etc
-- DHT22 sensor
+- Arduino-compatible board (e.g., Uno, Nano)
+- DHT22 sensor connected to any digital pin
 
-## Installation Instructions
-1. Download the ZIP file
+---
+
+## ⚙️ Installation Instructions
+1. Download the ZIP file from [GitHub](https://github.com/fadhil-1911/MyDHT22)
 2. Extract it into `Documents/Arduino/libraries/MyDHT22`
-3. Open Arduino IDE and check the examples
+3. Restart the Arduino IDE
+4. Open **File > Examples > MyDHT22 > BasicRead**
 
-## Important Notes
-- Make sure the sensor is connected correctly (VCC, GND, and data pins)
-- Can be used with any digital pin
+---
 
-## Usage Examples
+## ⚠️ Important Notes
+- Wire the sensor correctly (VCC to 3.3V/5V, GND to GND, DATA to digital pin)
+- Use a 4.7k–10k pull-up resistor on the data pin (recommended)
+
+---
+
+## 🚀 Usage Example
 
 ```cpp
 #include <MyDHT22.h>
 
-MyDHT22 dht(2); // Pin D2
+MyDHT22 dht(2); // Connect DHT22 to digital pin 2
 
 void setup() {
-Serial.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
-if (dht.read()) {
+  if (dht.read()) {
     Serial.print("Temp: ");
     Serial.print(dht.getTemperature());
-    Serial.print(" C, Humidity: ");
+    Serial.print(" °C, Humidity: ");
     Serial.println(dht.getHumidity());
   }
   delay(2000);
 }
-```cpp
+
 
 ⸻
 
-
-## API Referenc Documentation – MyDHT22 Library
-
-Below is a concise explanation of the API (Application Programming Interface) provided by the MyDHT22 library:
-
-⸻
+📚 API Reference – MyDHT22
 
 🔧 Core Functions (MyDHT22.h)
 
-⸻
-
-📌 1. MyDHT22(uint8_t pin)
-	•	Purpose: Constructor that sets the digital pin connected to the DHT22 sensor.
-	•	Example:
-
-MyDHT22 dht(2);
-
+MyDHT22(uint8_t pin)
+	•	Purpose: Constructor to initialize the sensor pin.
+	•	Example: MyDHT22 dht(2);
 
 ⸻
 
-📌 2. bool read()
-	•	Purpose: Reads temperature and humidity data from the sensor.
-	•	Returns: true if successful, false if failed (e.g., timing issues).
-	•	Note: Must be called before accessing temperature or humidity values.
+bool read()
+	•	Purpose: Read temperature & humidity data.
+	•	Returns: true if successful, false otherwise.
+	•	Note: Must be called before accessing temperature or humidity.
 	•	Example:
 
 if (dht.read()) {
-  // Reading was successful
+  // Success
 }
 
 
 
 ⸻
 
-📌 3. float getTemperature()
-	•	Purpose: Returns the temperature value in degrees Celsius after a successful read().
-	•	Example:
-
-Serial.println(dht.getTemperature());
-
-
+float getTemperature()
+	•	Purpose: Returns the temperature in °C after successful read().
+	•	Example: Serial.println(dht.getTemperature());
 
 ⸻
 
-📌 4. float getHumidity()
-	•	Purpose: Returns the relative humidity (%) after a successful read().
-	•	Example:
-
-Serial.println(dht.getHumidity());
-
-
+float getHumidity()
+	•	Purpose: Returns the relative humidity (%) after successful read().
+	•	Example: Serial.println(dht.getHumidity());
 
 ⸻
 
-📌 5. bool isValid()
+bool isValid()
 	•	Purpose: Checks if the most recent reading is valid.
 	•	Example:
 
 if (dht.isValid()) {
-  // The data is valid and safe to use
+  // Safe to use
 }
 
 
 
 ⸻
 
-  
+📂 Project Structure
+
+MyDHT22/
+├── src/
+│   ├── MyDHT22.cpp
+│   └── MyDHT22.h
+├── examples/
+│   └── BasicRead/
+│       └── BasicRead.ino
+├── library.properties
+└── README.md
+
+
+⸻
+
+📄 License
+
+This library is licensed under the MIT License.
+
+MIT License
+
+Copyright (c) 2025 Fadhil
+
+Permission is hereby granted, free of charge, to any person obtaining a copy...
+(full MIT text here)
+
+
+⸻
+
+
