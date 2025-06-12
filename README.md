@@ -102,22 +102,6 @@ if (dht.isValid()) {
 }
 
 
-
-⸻
-
-📂 Project Structure
-
-MyDHT22/
-├── src/
-│   ├── MyDHT22.cpp
-│   └── MyDHT22.h
-├── examples/
-│   └── BasicRead/
-│       └── BasicRead.ino
-├── library.properties
-└── README.md
-
-
 ⸻
 
 📄 License
