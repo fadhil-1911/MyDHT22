@@ -14,3 +14,11 @@
 
 ### Fixed
 - Corrected `examples/` folder name (was previously `example`)
+
+
+---
+
+## [v1.0.0] - 2025-06-14
+### Initial Release
+- Basic DHT22 support
+- read(), getTemperature(), getHumidity()
