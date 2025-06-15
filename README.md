@@ -5,14 +5,14 @@
 
 ---
 
-## 🔑 Key Features
+## Key Features
 - Reads temperature (°C) and humidity (% RH) via digital signal
 - Lightweight and fast – no external dependencies
 - Non-blocking, optimized for microcontrollers
 
 ---
 
-## 📋 System Requirements
+## System Requirements
 - Arduino IDE
 - Arduino-compatible board (e.g., Uno, Nano)
 - DHT22 sensor connected to any digital pin
@@ -27,13 +27,13 @@
 
 ---
 
-## ⚠️ Important Notes
+## Important Notes
 - Wire the sensor correctly (VCC to 3.3V/5V, GND to GND, DATA to digital pin)
 - Use a 4.7k–10k pull-up resistor on the data pin (recommended)
 
 ---
 
-## 🚀 Usage Example
+## Example
 
 ```cpp
 #include <MyDHT22.h>
@@ -57,7 +57,7 @@ void loop() {
 
 ⸻
 
-📚 API Reference – MyDHT22
+ API Reference – MyDHT22
 
 🔧 Core Functions (MyDHT22.h)
 
@@ -104,7 +104,7 @@ if (dht.isValid()) {
 
 ⸻
 
-📄 License
+ License
 
 This library is licensed under the MIT License.
 
