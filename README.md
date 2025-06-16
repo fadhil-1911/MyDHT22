@@ -38,20 +38,29 @@
 ```cpp
 #include <MyDHT22.h>
 
-MyDHT22 dht(2); // Connect DHT22 to digital pin 2
+// Connect DHT22 to digital pin 7
+MyDHT22 dht(7);
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("Starting DHT22 reading...");
 }
 
 void loop() {
-  if (dht.read()) {
-    Serial.print("Temp: ");
-    Serial.print(dht.getTemperature());
+  if (dht.readData()) {
+    float temperature = dht.getTemperature();
+    float humidity = dht.getHumidity();
+
+    Serial.print("Temperature: ");
+    Serial.print(temperature);
     Serial.print(" °C, Humidity: ");
-    Serial.println(dht.getHumidity());
+    Serial.print(humidity);
+    Serial.println(" %");
+  } else {
+    Serial.println("Failed to read data from DHT22");
   }
-  delay(2000);
+
+  delay(2000); // read every 2 seconds
 }
 
 
@@ -59,47 +68,81 @@ void loop() {
 
  API Reference – MyDHT22
 
-🔧 Core Functions (MyDHT22.h)
+Hebat! Di bawah ini saya sediakan versi Markdown untuk dokumentasi API MyDHT22 – sesuai dimasukkan ke dalam fail README.md projek GitHub awak.
+
+⸻
+
+📘 MyDHT22 Arduino Library
+
+MyDHT22 is a lightweight Arduino library for reading temperature and humidity from a DHT22 sensor without external dependencies.
+
+⸻
+
+🔧 Constructor
 
 MyDHT22(uint8_t pin)
-	•	Purpose: Constructor to initialize the sensor pin.
-	•	Example: MyDHT22 dht(2);
+
+Initializes the DHT22 sensor on the specified digital pin.
+	•	Parameters:
+	•	pin – Arduino digital pin connected to the DHT22 data pin.
+	•	Example:
+
+MyDHT22 dht(7); // Uses digital pin 7
+
+
 
 ⸻
 
-bool read()
-	•	Purpose: Read temperature & humidity data.
-	•	Returns: true if successful, false otherwise.
-	•	Note: Must be called before accessing temperature or humidity.
-	•	Example:
+📡 readData()
 
-if (dht.read()) {
-  // Success
+bool readData()
+
+Reads new data from the DHT22 sensor.
+	•	Returns: true if reading is successful and checksum is valid, false otherwise.
+	•	Must be called before accessing temperature or humidity.
+
+if (dht.readData()) {
+  // safe to call getTemperature() and getHumidity()
 }
 
 
-
 ⸻
+
+🌡️ getTemperature()
 
 float getTemperature()
-	•	Purpose: Returns the temperature in °C after successful read().
-	•	Example: Serial.println(dht.getTemperature());
+
+Returns the last temperature reading in degrees Celsius.
+	•	Return Type: float
+	•	Note: Call only after readData() returns true.
+
+float temp = dht.getTemperature();
+
 
 ⸻
+
+💧 getHumidity()
 
 float getHumidity()
-	•	Purpose: Returns the relative humidity (%) after successful read().
-	•	Example: Serial.println(dht.getHumidity());
+
+Returns the last humidity reading in percentage (%RH).
+	•	Return Type: float
+	•	Note: Call only after readData() returns true.
+
+float hum = dht.getHumidity();
+
 
 ⸻
 
-bool isValid()
-	•	Purpose: Checks if the most recent reading is valid.
-	•	Example:
+🛠️ Notes
+	•	Timing-sensitive: Uses delayMicroseconds() for signal timing.
+	•	Non-blocking read not supported.
+	•	Avoid using with other time-critical tasks.
+	•	Compatible with AVR-based boards (e.g. Arduino Uno, Nano).
 
-if (dht.isValid()) {
-  // Safe to use
-}
+⸻
+
+Kalau nak versi HTML juga (untuk dokumentasi laman web), saya boleh convert versi ini ke HTML siap dengan <h2>, <code>, <pre> dan icon emoji juga jika mahu. Nak saya teruskan?
 
 
 ⸻
