@@ -24,7 +24,7 @@ void setup() {
 
 void loop() {
   // Read sensor and proceed only if successful
-  if (dht.read()) {
+  if (dht.readData()) {
     float tempC = dht.getTemperature();
     float tempF = toFahrenheit(tempC);
 
