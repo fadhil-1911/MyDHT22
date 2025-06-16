@@ -30,7 +30,7 @@ void loop() {
   if (millis() - lastRead >= interval) {
     lastRead = millis();  // Update last read time
 
-    if (dht.read()) {
+    if (dht.readData()) {
       Serial.print("Temperature: ");
       Serial.print(dht.getTemperature());
       Serial.print(" °C, Humidity: ");
