@@ -63,7 +63,6 @@ void loop() {
   delay(2000); // read every 2 seconds
 }
 
-
 ⸻
 
  API Reference – MyDHT22
@@ -72,7 +71,7 @@ Hebat! Di bawah ini saya sediakan versi Markdown untuk dokumentasi API MyDHT22 �
 
 ⸻
 
-📘 MyDHT22 Arduino Library
+MyDHT22 Arduino Library
 
 MyDHT22 is a lightweight Arduino library for reading temperature and humidity from a DHT22 sensor without external dependencies.
 
@@ -89,11 +88,9 @@ Initializes the DHT22 sensor on the specified digital pin.
 
 MyDHT22 dht(7); // Uses digital pin 7
 
-
-
 ⸻
 
-📡 readData()
+readData()
 
 bool readData()
 
@@ -105,10 +102,9 @@ if (dht.readData()) {
   // safe to call getTemperature() and getHumidity()
 }
 
-
 ⸻
 
-🌡️ getTemperature()
+getTemperature()
 
 float getTemperature()
 
@@ -118,10 +114,9 @@ Returns the last temperature reading in degrees Celsius.
 
 float temp = dht.getTemperature();
 
-
 ⸻
 
-💧 getHumidity()
+getHumidity()
 
 float getHumidity()
 
@@ -131,20 +126,15 @@ Returns the last humidity reading in percentage (%RH).
 
 float hum = dht.getHumidity();
 
-
 ⸻
 
-🛠️ Notes
+Notes
 	•	Timing-sensitive: Uses delayMicroseconds() for signal timing.
 	•	Non-blocking read not supported.
 	•	Avoid using with other time-critical tasks.
 	•	Compatible with AVR-based boards (e.g. Arduino Uno, Nano).
 
 ⸻
-
-Kalau nak versi HTML juga (untuk dokumentasi laman web), saya boleh convert versi ini ke HTML siap dengan <h2>, <code>, <pre> dan icon emoji juga jika mahu. Nak saya teruskan?
-
-
 ⸻
 
  License
