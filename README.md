@@ -63,11 +63,9 @@ void loop() {
   delay(2000); // read every 2 seconds
 }
 
-⸻
+⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
  API Reference – MyDHT22
-
-Hebat! Di bawah ini saya sediakan versi Markdown untuk dokumentasi API MyDHT22 – sesuai dimasukkan ke dalam fail README.md projek GitHub awak.
 
 ⸻
 
