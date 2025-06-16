@@ -67,9 +67,7 @@ void loop() {
 
 API Reference – MyDHT22
 
-MyDHT22 is a lightweight Arduino library for reading temperature and humidity from a DHT22 sensor without external dependencies.
-
-⸻
+⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
 🔧 Constructor
 
