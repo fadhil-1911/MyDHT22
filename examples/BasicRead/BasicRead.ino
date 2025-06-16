@@ -19,7 +19,7 @@ void setup() {
 
 void loop() {
   // Read the sensor data
-  dht.read();
+  dht.readData();
 
   // Print temperature in Celsius
   Serial.print("Temperature: ");
