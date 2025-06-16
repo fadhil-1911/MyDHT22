@@ -19,7 +19,7 @@
 
 ---
 
-## ⚙️ Installation Instructions
+## Installation Instructions
 1. Download the ZIP file from [GitHub](https://github.com/fadhil-1911/MyDHT22)
 2. Extract it into `Documents/Arduino/libraries/MyDHT22`
 3. Restart the Arduino IDE
@@ -69,9 +69,9 @@ API Reference – MyDHT22
 
 ⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
-🔧 Constructor
+## Constructor
 
-MyDHT22(uint8_t pin)
+## MyDHT22(uint8_t pin)
 
 Initializes the DHT22 sensor on the specified digital pin.
 	•	Parameters:
@@ -82,7 +82,7 @@ MyDHT22 dht(7); // Uses digital pin 7
 
 ⸻
 
-readData()
+## readData()
 
 bool readData()
 
@@ -96,7 +96,7 @@ if (dht.readData()) {
 
 ⸻
 
-getTemperature()
+## getTemperature()
 
 float getTemperature()
 
@@ -108,7 +108,7 @@ float temp = dht.getTemperature();
 
 ⸻
 
-getHumidity()
+## getHumidity()
 
 float getHumidity()
 
