@@ -36,32 +36,27 @@
 ## Example
 
 ```cpp
-#include <MyDHT22.h>
+#include "MyDHT22.h"
 
-// Connect DHT22 to digital pin 7
-MyDHT22 dht(7);
+MyDHT22 dht(2); // sensor pin
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("Starting DHT22 reading...");
 }
 
 void loop() {
   if (dht.readData()) {
-    float temperature = dht.getTemperature();
-    float humidity = dht.getHumidity();
-
-    Serial.print("Temperature: ");
-    Serial.print(temperature);
-    Serial.print(" °C, Humidity: ");
-    Serial.print(humidity);
+    Serial.print("Temp: ");
+    Serial.print(dht.getTemperature());
+    Serial.print(" C, Humidity: ");
+    Serial.print(dht.getHumidity());
     Serial.println(" %");
   } else {
-    Serial.println("Failed to read data from DHT22");
+    Serial.println("Sensor gagal respons.");
   }
-
-  delay(2000); // read every 2 seconds
+  delay(2000);
 }
+
 
 ⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
