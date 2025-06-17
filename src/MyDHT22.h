@@ -7,8 +7,8 @@ class MyDHT22 {
   public:
     MyDHT22(uint8_t pin);
     bool readData();
-    float getTemperature();
     float getHumidity();
+    float getTemperature();
 
   private:
     uint8_t _pin;
@@ -16,3 +16,4 @@ class MyDHT22 {
 };
 
 #endif
+
