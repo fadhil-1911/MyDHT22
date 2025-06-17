@@ -61,3 +61,86 @@ float MyDHT22::getTemperature() {
   if (data[2] & 0x80) t = -t;
   return t;
 }
+
+
+
+/*
+Kod MyDHT22 yang Fadhil tunjukkan sudah sangat baik dan kemas, dengan beberapa ciri penting sudah ada:
+
+✅ Penstrukturan class modular
+✅ Guna uint8_t, int16_t, uint32_t → sesuai untuk semua platform
+✅ Proses handshake DHT22 mengikut timing standard
+✅ Pengiraan suhu negatif (signed) tepat
+✅ Checksum dikira betul
+✅ Fungsi getTemperature() dan getHumidity() jelas dan ringan
+
+Namun untuk tahap production atau jika ingin menjadikan ia pustaka rasmi, ada beberapa penambahbaikan kecil boleh dibuat:
+
+⸻
+
+✅ Cadangan Penambahbaikan
+
+1. Pulihkan pinMode selepas pembacaan
+
+Elakkan tinggalkan pin dalam INPUT terbuka:
+
+// Di akhir readData(), selepas return (sama ada berjaya atau gagal)
+pinMode(_pin, INPUT_PULLUP);
+
+Ini elak pin ‘floating’ atau ditinggalkan dalam INPUT sahaja.
+
+⸻
+
+2. Debounce tunggu LOW dan HIGH dengan timeout jelas
+
+Contoh:
+
+#define DHT_TIMEOUT 100
+
+// ... dalam loop tunggu
+t = micros();
+while (digitalRead(_pin) == HIGH) {
+  if ((micros() - t) > DHT_TIMEOUT) return false;
+}
+
+Sekarang hardcoded 90us — boleh gantikan dengan #define DHT_TIMEOUT 90 di atas supaya mudah ubah nanti.
+
+⸻
+
+3. Sokong retry automatik jika bacaan gagal
+
+Contoh (optional):
+
+bool MyDHT22::read() {
+  for (uint8_t i = 0; i < 3; i++) {
+    if (readData()) return true;
+    delay(10); // tunggu sedikit sebelum cuba semula
+  }
+  return false;
+}
+
+
+⸻
+
+4. Dokumentasikan format data
+
+Contoh, komen pada fungsi getTemperature():
+
+// Suhu dalam format 16-bit: MSB[7] tanda (-), MSB[6:0] dan LSB untuk nilai x10
+
+
+⸻
+
+5. Jika digunakan dalam interrupt context (jarang, tapi future-proof)
+
+Pastikan micros() tidak diganggu, atau disable interrupt semasa baca. Tapi ini cuma jika mahu betul-betul stabil dalam aplikasi kritikal.
+
+⸻
+
+✅ Kesimpulan
+
+✅ YA, kod Fadhil sudah stabil dan boleh digunakan untuk projek sebenar.
+🛠️ Jika ingin buat versi lebih lasak, hanya perlu tambah sedikit dari segi pengendalian exception, pemulihan pin, dan mungkin retry logic.
+
+Nak saya bantu buat fail .h dan .cpp siap untuk upload ke GitHub? Atau mahu struktur examples/ juga? 
+*/
