@@ -1,0 +1,78 @@
+Here are the **detailed steps of the DHT22 sensor reading process**:
+
+---
+
+## **Steps for Reading Data from DHT22 Sensor**
+
+### **1. Initialization**
+
+* Configure the data pin connected to DHT22 as **input with pull-up**.
+* Prepare a **buffer (5 bytes)** to store the 40 bits (humidity, temperature, checksum).
+
+---
+
+### **2. Start Signal (Request from MCU to DHT22)**
+
+* Set the data pin to **OUTPUT** mode.
+* Pull the pin **LOW for at least 1 ms** (usually \~1–20 ms).
+* Pull the pin **HIGH for 20–40 µs**.
+* Set the pin to **INPUT** mode to wait for the sensor response.
+
+---
+
+### **3. Sensor Response**
+
+* DHT22 responds with the following sequence:
+
+  * **LOW for \~80 µs** (acknowledgment start).
+  * **HIGH for \~80 µs** (ready to send data).
+* If any of these are missing or delayed (timeout >90 µs), the read fails.
+
+---
+
+### **4. Data Transmission (40 Bits Total)**
+
+* The DHT22 sends **40 bits**:
+
+  * **16 bits for humidity** (integer and decimal parts).
+  * **16 bits for temperature** (integer and decimal parts).
+  * **8 bits checksum**.
+
+* For **each bit** (repeated 40 times):
+
+  1. DHT22 pulls the line **LOW for \~50 µs** to signal a new bit.
+  2. Then it pulls the line **HIGH**.
+
+     * If HIGH lasts **\~26-30 µs**, the bit is `0`.
+     * If HIGH lasts **\~70 µs**, the bit is `1`.
+
+---
+
+### **5. Store the Data**
+
+* Store each bit into the correct position in the 5-byte data buffer.
+* Use bit manipulation to insert bits into bytes.
+
+---
+
+### **6. Verify the Checksum**
+
+* Calculate checksum:
+  `checksum = data[0] + data[1] + data[2] + data[3]`
+* Compare with `data[4]` (received checksum).
+* If they match, the data is **valid**. Otherwise, **discard** the result.
+
+---
+
+### **7. Extract Humidity and Temperature**
+
+* **Humidity** = `(data[0] << 8) | data[1]` × 0.1 (%RH)
+* **Temperature**:
+
+  * Get raw value: `(data[2] & 0x7F) << 8 | data[3]`
+  * Multiply by 0.1
+  * If `data[2] & 0x80` is set, temperature is negative.
+
+---
+
+Let me know if you'd like this as a diagram, a PDF, or a commented version of your code!
