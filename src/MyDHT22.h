@@ -21,17 +21,10 @@
 // MyDHT22 class to interface with a DHT22 temperature and humidity sensor
 class MyDHT22 {
   public:
-    // Constructor: initialize the sensor with a specific digital pin
-    MyDHT22(uint8_t pin);
-
-    // Reads temperature and humidity from the sensor and stores in internal buffer
-    bool readData();
-
-    // Returns the last read humidity value in %RH
-    float getHumidity();
-
-    // Returns the last read temperature value in degrees Celsius
-    float getTemperature();
+    MyDHT22(uint8_t pin); // Constructor: initialize the sensor with a specific digital pin
+    bool readData(); // Reads temperature and humidity from the sensor and stores in internal buffer
+    float getHumidity(); // Returns the last read humidity value in %RH
+    float getTemperature(); // Returns the last read temperature value in degrees Celsius
 
   private:
     uint8_t _pin;     // Pin connected to DHT22 data line
