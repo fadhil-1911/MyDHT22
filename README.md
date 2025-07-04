@@ -52,7 +52,7 @@ void loop() {
     Serial.print(dht.getHumidity());
     Serial.println(" %");
   } else {
-    Serial.println("Sensor gagal respons.");
+    Serial.println("Sensor Error.");
   }
   delay(2000);
 }
