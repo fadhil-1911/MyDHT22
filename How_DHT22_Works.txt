@@ -1,6 +1,60 @@
 Here are the **detailed steps of the DHT22 sensor reading process**:
 
 ---
+[ Start ]
+   |
+   v
+[ MyDHT22::readData() ]
+   |
+   v
+[ Clear data buffer (5 bytes) ]
+   |
+   v
+[ Send start signal to DHT22 ]
+   - Set pin as OUTPUT
+   - Pull pin LOW for ≥1ms
+   - Pull pin HIGH for 30µs
+   - Switch pin to INPUT mode
+   |
+   v
+[ Wait for DHT22 response ]
+   - Expect: LOW (~80µs), HIGH (~80µs), LOW (~80µs)
+   |
+   +--> (❌ Timeout at any stage?) --> [ Return false ]
+   |
+   v
+[ Read 40 bits of sensor data ]
+   - For each bit:
+       - Wait for pin to go HIGH
+       - Measure how long it's HIGH
+           - >40µs → bit = 1
+           - ≤40µs → bit = 0
+       - Store bit into `data[0..4]`
+   |
+   v
+[ Validate checksum ]
+   - Sum of data[0] + data[1] + data[2] + data[3]
+     must equal data[4]
+   |
+   +--> (❌ Invalid checksum?) --> [ Return false ]
+   |
+   v
+(✅ Valid) --> [ Return true ]
+
+-------------------------------
+ Accessor Functions:
+
+[ getHumidity() ]
+   → Combine data[0] and data[1]
+   → Multiply by 0.1
+   → Return as %RH
+
+[ getTemperature() ]
+   → Combine data[2] and data[3]
+   → Check sign bit (bit 15 / data[2] & 0x80)
+   → Multiply by 0.1
+   → Return as °C
+---
 
 ## **Steps for Reading Data from DHT22 Sensor**
 
@@ -75,4 +129,4 @@ Here are the **detailed steps of the DHT22 sensor reading process**:
 
 ---
 
-Let me know if you'd like this as a diagram, a PDF, or a commented version of your code!
+
