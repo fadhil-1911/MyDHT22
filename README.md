@@ -123,15 +123,15 @@ Notes
 ⸻
 ⸻
 
- License
+ ## License
 
 This library is licensed under the MIT License.
-
-MIT License
 
 Copyright (c) 2025 Fadhil
 
 Permission is hereby granted, free of charge, to any person obtaining a copy...
+
+See the [LICENSE](LICENSE) file for full details.
 
 
 ⸻
