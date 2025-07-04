@@ -1,0 +1,55 @@
+**Berikut ialah langkah-langkah terperinci proses bacaan sensor DHT22:**:
+
+[ Mula ]
+   |
+   v
+[ MyDHT22::readData() ]
+   |
+   v
+[ Kosongkan buffer data (5 bait) ]
+   |
+   v
+[ Hantar isyarat mula kepada DHT22 ]
+   - Set pin sebagai OUTPUT
+   - Tarik pin ke LOW selama ≥1ms
+   - Tarik pin ke HIGH selama 30µs
+   - Tukar pin ke INPUT untuk tunggu respon
+   |
+   v
+[ Tunggu respons dari DHT22 ]
+   - Dijangka: LOW (~80µs), HIGH (~80µs), LOW (~80µs)
+   |
+   +--> (❌ Timeout pada mana-mana tahap?) --> [ Return false ]
+   |
+   v
+[ Baca 40 bit data daripada sensor ]
+   - Untuk setiap bit:
+       - Tunggu pin naik ke HIGH
+       - Ukur berapa lama pin kekal HIGH
+           - >40µs → bit = 1
+           - ≤40µs → bit = 0
+       - Simpan bit ke dalam `data[0..4]`
+   |
+   v
+[ Sahkan checksum ]
+   - Jumlah data[0] + data[1] + data[2] + data[3]
+     mesti sama dengan data[4]
+   |
+   +--> (❌ Checksum tidak sah?) --> [ Return false ]
+   |
+   v
+(✅ Sah) --> [ Return true ]
+
+-------------------------------
+ Fungsi Akses (Accessor):
+
+[ getHumidity() ]
+   → Gabungkan data[0] dan data[1]
+   → Darab 0.1
+   → Pulangkan dalam %RH
+
+[ getTemperature() ]
+   → Gabungkan data[2] dan data[3]
+   → Semak bit tanda negatif (bit ke-15 / data[2] & 0x80)
+   → Darab 0.1
+   → Pulangkan dalam °C
