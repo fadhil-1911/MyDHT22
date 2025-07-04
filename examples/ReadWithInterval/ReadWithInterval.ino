@@ -9,7 +9,7 @@
 
   Wiring:
   - DHT22 MODUL DATA pin connected to digital pin 2
-
+*/
 #include <MyDHT22.h>  // Include the MyDHT22 library
 
 // Create a DHT22 sensor object on pin D2
