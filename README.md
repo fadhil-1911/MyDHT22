@@ -8,7 +8,6 @@
 ## Key Features
 - Reads temperature (°C) and humidity (% RH) via digital signal
 - Lightweight and fast – no external dependencies
-- Non-blocking, optimized for microcontrollers
 
 ---
 
