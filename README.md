@@ -1,7 +1,7 @@
 
 # MyDHT22 Library
 
-**Lightweight Arduino library for reading temperature and humidity from DHT22 sensor.**
+**Lightweight Arduino library for reading temperature and humidity from DHT22 sensor modul.**
 
 ---
 
@@ -15,7 +15,7 @@
 ## System Requirements
 - Arduino IDE
 - Arduino-compatible board (e.g., Uno, Nano)
-- DHT22 sensor connected to any digital pin
+- DHT22 modul sensor connected to any digital pin
 
 ---
 
@@ -29,7 +29,6 @@
 
 ## Important Notes
 - Wire the sensor correctly (VCC to 3.3V/5V, GND to GND, DATA to digital pin)
-- Use a 4.7k–10k pull-up resistor on the data pin (recommended)
 
 ---
 
