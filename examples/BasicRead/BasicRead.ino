@@ -4,8 +4,7 @@
   Board: Arduino UNO / Nano
 
   Wiring:
-  - DHT22 DATA pin connected to digital pin 2
-  - Use a 10kΩ pull-up resistor between DATA and VCC
+  - DHT22 MODUL DATA pin connected to digital pin 2
 */
 
 #include <MyDHT22.h>  // Include the MyDHT22 library
