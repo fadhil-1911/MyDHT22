@@ -41,9 +41,6 @@
 (✅ Sah) --> [ Return true ]
 
 -------------------------------
-Berikut ialah terjemahan penuh ke Bahasa Malaysia untuk dokumentasi GitHub DHT22 anda:
-
-⸻
 
 Fungsi Akses (Accessor Functions):
 
@@ -91,7 +88,8 @@ Langkah Membaca Data daripada Sensor DHT22
 	•	16 bit untuk kelembapan (bahagian integer dan perpuluhan).
 	•	16 bit untuk suhu (bahagian integer dan perpuluhan).
 	•	8 bit untuk checksum (semakan data).
-	•	Untuk setiap bit (sebanyak 40 kali):
+	
+  Untuk setiap bit (sebanyak 40 kali):
 	1.	DHT22 menarik pin ke LOW selama ±50 µs untuk memulakan bit baru.
 	2.	Kemudian menarik pin ke HIGH.
 	•	Jika HIGH selama ±26–30 µs, nilai bit ialah 0.
@@ -118,100 +116,12 @@ checksum = data[0] + data[1] + data[2] + data[3]
 
 7. Ekstrak Kelembapan dan Suhu
 	•	Kelembapan = (data[0] << 8) | data[1] × 0.1 (%RH)
-	•	Suhu:
+	Suhu:
 	•	Ambil nilai mentah: (data[2] & 0x7F) << 8 | data[3]
 	•	Darab dengan 0.1
 	•	Jika data[2] & 0x80 ditetapkan, suhu adalah negatif.
 
 ⸻
 
-Baik! Berikut ialah versi Markdown penuh dalam Bahasa Malaysia, sedia untuk Fadhil salin ke dalam fail README.md GitHub atau dokumentasi repo:
 
-⸻
-
-
-## 🧪 Fungsi Akses (Accessor Functions)
-
-### `getHumidity()`
-- Gabungkan `data[0]` dan `data[1]`
-- Darab dengan `0.1`
-- Pulangkan sebagai **%RH** (Kelembapan Relatif)
-
-### `getTemperature()`
-- Gabungkan `data[2]` dan `data[3]`
-- Semak bit tanda (bit ke-15 / `data[2] & 0x80`)
-- Darab dengan `0.1`
-- Pulangkan sebagai **°C** (Darjah Celsius)
-
----
-
-## 📶 Langkah Membaca Data daripada Sensor DHT22
-
-### 1️⃣ Permulaan (Initialization)
-- Tetapkan pin data (DHT22) sebagai **input dengan pull-up**
-- Sediakan **penampan (buffer)** sebanyak 5 bait untuk menyimpan 40 bit (kelembapan, suhu, semakan)
-
----
-
-### 2️⃣ Isyarat Permulaan (Start Signal dari MCU)
-- Tukar pin data ke **OUTPUT**
-- Tarik pin ke **LOW selama sekurang-kurangnya 1 ms** (~1–20 ms)
-- Tarik pin ke **HIGH selama 20–40 µs**
-- Tukar semula ke **INPUT** untuk tunggu respons dari DHT22
-
----
-
-### 3️⃣ Respons dari Sensor
-- DHT22 membalas dengan urutan berikut:
-  - **LOW selama ~80 µs** (acknowledgment)
-  - **HIGH selama ~80 µs** (sedia untuk hantar data)
-- Jika mana-mana isyarat tiada atau lambat (melebihi 90 µs), bacaan gagal
-
----
-
-### 4️⃣ Penghantaran Data (40 Bit Jumlah)
-- DHT22 menghantar 40 bit dalam susunan:
-  - 16 bit kelembapan (integer + perpuluhan)
-  - 16 bit suhu (integer + perpuluhan)
-  - 8 bit semakan (checksum)
-
-#### Untuk setiap bit (40 kali):
-1. Tarik pin ke **LOW selama ~50 µs**
-2. Kemudian naikkan ke **HIGH**:
-   - Jika `HIGH` ≈ **26–30 µs** → Bit adalah `0`
-   - Jika `HIGH` ≈ **70 µs** → Bit adalah `1`
-
----
-
-### 5️⃣ Simpan Data ke Buffer
-- Simpan setiap bit ke lokasi yang betul dalam array 5 bait
-- Gunakan operasi bit (bitwise) untuk susun dengan tepat
-
----
-
-### 6️⃣ Sahkan Semakan (Checksum)
-```cpp
-checksum = data[0] + data[1] + data[2] + data[3];
-
-	•	Bandingkan hasil dengan data[4]
-	•	Jika padan: Data adalah sah
-	•	Jika tak padan: Abaikan hasil bacaan
-
-⸻
-
-7️⃣ Ekstrak Nilai Suhu dan Kelembapan
-
-Kelembapan (%RH):
-
-humidity = ((data[0] << 8) | data[1]) * 0.1;
-
-Suhu (°C):
-
-rawTemp = ((data[2] & 0x7F) << 8) | data[3];
-temperature = rawTemp * 0.1;
-if (data[2] & 0x80) temperature = -temperature;
-
-
-⸻
-
-
+  
